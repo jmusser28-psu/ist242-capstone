@@ -91,7 +91,7 @@ public class PrintMenu {
             }
             else if (userChoice == 4) {
                 // Delete vehicle by VIN
-                vm.deleteVehicle();
+                vm.deleteVehicle("1");
             }
             else if (userChoice == 5) {
                 // Display average maintenance costs submenu

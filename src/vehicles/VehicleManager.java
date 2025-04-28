@@ -150,66 +150,46 @@ public class VehicleManager {
 
 
     /**
-     * Deletes a vehicle based off of its VIN, Make, Model, amd Year
+     * Deletes a vehicle based off of its VIN
      */
-    public void deleteVehicle() {
-        for (int i = 0; i < vehicles.size(); i++) {
-            String vin = vehicles.get(i).getVin();
-            String make = vehicles.get(i).getMake();
-            String model = vehicles.get(i).getModel();
-            String year = vehicles.get(i).getYear();
-            String type = vehicles.get(i).getType();
-
-            System.out.printf("%d: Vin: %s, Make: %s, Model: %s, Year: %s, Type: %s\n", (i + 1), vin, make, model, year, type);
-        }
-
-        System.out.print("Please enter a desired VIN #: ");
-        String userVin = valide.line();
-
-        boolean run = true;
+    public boolean deleteVehicle(String vin) {
         String type = "";
-        while (run) {
-            System.out.print("Please enter the type of vehicle (Car/Truck/Motorcycle): ");
-            type = valide.line();
-            if (type.equalsIgnoreCase("Car")) {
-                run = false;
-            }
-            else if (type.equalsIgnoreCase("Motorcycle")) {
-                run = false;
-            }
-            else if (type.equalsIgnoreCase("Truck")) {
-                run = false;
-            }
-            else {
-                System.out.println("Please enter a valid vehicle type");
+        boolean valid = false;
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getVin().equals(vin)) {
+                type = vehicle.getType();
+                valid = true;
             }
         }
 
-        if (type.equalsIgnoreCase("Car")) {
-            for (int i = 0; i < cars.size(); i++) {
-                if (cars.get(i).getVin().equalsIgnoreCase(userVin)) {
+        if (valid) {
+            for (int i = 0; i < vehicles.size(); i++) {
+                vehicles.remove(i);
+            }
+
+            if (type.equals("Car")) {
+                for (int i = 0; i < cars.size(); i++) {
                     cars.remove(i);
                 }
             }
-        }
 
-        if (type.equalsIgnoreCase("Motorcycle")) {
-            for (int i = 0; i < motorcycles.size(); i++) {
-                if (motorcycles.get(i).getVin().equalsIgnoreCase(userVin)) {
+            if (type.equals("Motorcycle")) {
+                for (int i = 0; i < motorcycles.size(); i++) {
                     motorcycles.remove(i);
                 }
             }
-        }
 
-        if (type.equalsIgnoreCase("Truck")) {
-            for (int i = 0; i < trucks.size(); i++) {
-                if (trucks.get(i).getVin().equalsIgnoreCase(userVin)) {
+            if (type.equals("Truck")) {
+                for (int i = 0; i < trucks.size(); i++) {
                     trucks.remove(i);
                 }
             }
+
+            dbmanager.deleteVehicle(vin, type);
         }
 
-        dbmanager.deleteVehicle(userVin, type);
+        return valid;
     }
 
 
@@ -595,4 +575,28 @@ public class VehicleManager {
         return average;
     }
 
+    public Vehicle findVehicle(String vin) {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getVin().equals(vin)) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public ArrayList<Car> getCars() {
+        return cars;
+    }
+
+    public ArrayList<Motorcycle> getMotorcycles() {
+        return motorcycles;
+    }
+
+    public ArrayList<Truck> getTrucks() {
+        return trucks;
+    }
 }

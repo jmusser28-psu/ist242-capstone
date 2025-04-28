@@ -89,10 +89,12 @@ public class Vehicle {
      * Displays general maintenance details for the vehicle.
      * This method is designed to be overridden by subclasses.
      */
-    public void displayMaintenanceDetails() {
-        System.out.println("Vehicle: " + vehicle_type + " " + model +
+    public String displayMaintenanceDetails() {
+        String maintenance = ("Vehicle: " + vehicle_type + " " + model +
                 " | VIN: " + vin +
                 " | Maintenance: $" + costEstimate);
+
+        return maintenance;
     }
 
 }

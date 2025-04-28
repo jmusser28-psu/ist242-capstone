@@ -27,10 +27,12 @@ public class Car extends Vehicle {
      * Overrides the vehicle display method to include car-specific maintenance details.
      */
     @Override
-    public void displayMaintenanceDetails() {
-        System.out.println("Car: " + super.getMake() + " " + super.getModel() +
+    public String displayMaintenanceDetails() {
+        String maintenance = ("Car: " + super.getMake() + " " + super.getModel() +
                 " | VIN: " + super.getVin() +
                 " | Maintenance: $" + super.getCostEstimate() +
-                " | Oil Change Cost: " + (oilChangeCost));
+                " | Oil Change Cost: $" + (oilChangeCost));
+
+        return maintenance;
     }
 }

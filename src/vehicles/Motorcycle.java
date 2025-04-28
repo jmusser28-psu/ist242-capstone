@@ -27,11 +27,13 @@ public class Motorcycle extends Vehicle {
      * Overrides the Vehicle display method to show motorcycle-specific maintenance details.
      */
     @Override
-    public void displayMaintenanceDetails() {
-        System.out.println("Motorcycle: " + super.getMake() + " " + super.getModel() +
+    public String displayMaintenanceDetails() {
+        String maintenance = ("Motorcycle: " + super.getMake() + " " + super.getModel() +
                 " | VIN: " + super.getVin() +
                 " | Maintenance: $" + super.getCostEstimate() +
                 " | Chain Condition: " + chainCondition +
-                " | Chain Replacement Cost: " + chainReplacementCost);
+                " | Chain Replacement Cost: $" + chainReplacementCost);
+
+        return maintenance;
     }
 }

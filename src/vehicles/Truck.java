@@ -28,10 +28,12 @@ public class Truck extends Vehicle {
      * Overrides the Vehicle display method to show truck-specific maintenance details.
      */
     @Override
-    public void displayMaintenanceDetails() {
-        System.out.println("Truck: " + super.getMake() + " " + super.getModel() +
+    public String displayMaintenanceDetails() {
+        String maintenace = ("Truck: " + super.getMake() + " " + super.getModel() +
                 " | VIN: " + super.getVin() +
                 " | Maintenance: $" + super.getCostEstimate() +
-                " | Cargo Inspection Cost: " + (cargoInspectionCost));
+                " | Cargo Inspection Cost: $" + (cargoInspectionCost));
+
+        return maintenace;
     }
 }
