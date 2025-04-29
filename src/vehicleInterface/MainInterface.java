@@ -33,6 +33,12 @@ public class MainInterface extends JFrame {
 
 
         JButton addVehicle = new JButton("Add a vehicle");
+        addVehicle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddInterface(vm);
+            }
+        });
 
 
         JButton removeVehicle = new JButton("Remove a vehicle");
@@ -44,8 +50,6 @@ public class MainInterface extends JFrame {
         });
 
         JButton updateVehicle = new JButton("Update a vehicle");
-
-
 
         JButton searchVehicle = new JButton("Search for a vehicle");
         searchVehicle.addActionListener(new ActionListener() {

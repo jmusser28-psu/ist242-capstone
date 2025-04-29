@@ -12,12 +12,11 @@ import java.util.ArrayList;
 
 public class ListInterface extends JFrame {
     public ListInterface(VehicleManager vm) {
-
         setTitle("IST Vehicle Care Solutions");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel vehicleList = new JPanel(new GridLayout(32, 32, 4, 4));
+        JPanel vehicleList = new JPanel();
 
         JLabel listOfVehiclesLabel = new JLabel("Vehicles:");
         vehicleList.add(listOfVehiclesLabel, BorderLayout.NORTH);

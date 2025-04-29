@@ -45,109 +45,20 @@ public class VehicleManager {
         }
     }
 
-    /**
-     * Adds a new vehicle, while also asking the user for the vehicle type and
-     * vehicle characteristics.
-     */
-    public void addVehicle() {
-        System.out.print("Please enter a vehicle id: ");
-        String vin = valide.line();
-
-        System.out.print("Please enter a vehicle make: ");
-        String make = valide.line();
-
-        System.out.print("Please enter a vehicle model: ");
-        String model = valide.line();
-
-        System.out.print("Please enter the year produced: ");
-        String year = valide.line();
-
-        boolean run = true;
-        String type = "";
-        while (run) {
-            System.out.print("Please enter the type of vehicle (Car/Truck/Motorcycle): ");
-            type = valide.line();
-            if (type.equals("Car")) {
-                run = false;
-            }
-            else if (type.equals("Motorcycle")) {
-                run = false;
-            }
-            else if (type.equals("Truck")) {
-                run = false;
-            }
-            else {
-                System.out.println("Please enter a valid vehicle type");
-            }
-        }
-
-        System.out.print("Please enter the vehicle brand descriptor (Silverado, Corvette, etc.): ");
-        String vehicle_type = valide.line();
-
-        System.out.print("Please enter a vehicle cost estimate: ");
-        String costEstimate = valide.line();
-
-        if (type.equalsIgnoreCase("Car")) {
-            System.out.print("How many doors does your car have? (numerical value): ");
-            String numberOfDoors = valide.line();
-
-            System.out.print("How expensive is it to change the car's oil? : $");
-            String oilChangeCost = valide.line();
-
-            dbmanager.addCar(vin, make, model, year, type, vehicle_type, costEstimate, numberOfDoors, oilChangeCost);
-        }
-        if (type.equalsIgnoreCase("Motorcycle")) {
-            System.out.println("What is the condition of your chain? ");
-            System.out.println("1.) Poor");
-            System.out.println("2.) Fair");
-            System.out.println("3.) Good");
-            System.out.println("4.) Excellent");
-
-            boolean chainConditionRun = true;
-            byte userChoice = 0;
-            String chainCondition = "";
-
-            while (chainConditionRun) {
-                System.out.print("Please pick a choice (1-4): ");
-                userChoice = valide.validateByte();
-
-                // Allows the user to pick one of for pre-determined chain conditions
-                if (userChoice == 1) {
-                    chainCondition = "Poor";
-                    chainConditionRun = false;
-                }
-                else if (userChoice == 2) {
-                    chainCondition = "Fair";
-                    chainConditionRun = false;
-                }
-                else if (userChoice == 3) {
-                    chainCondition = "Good";
-                    chainConditionRun = false;
-                }
-                else if (userChoice == 4) {
-                    chainCondition = "Excellent";
-                    chainConditionRun = false;
-                }
-                else {
-                    System.out.printf("Invalid choice %d\n", userChoice);
-                }
-            }
-
-            System.out.println("How expensive is it to replace the motorcycle's chain? $");
-            String chainReplacementCost = valide.line();
-
-            dbmanager.addMotorcycle(vin, make, model, year, type, vehicle_type, costEstimate, chainCondition, chainReplacementCost);
-        }
-        if (type.equalsIgnoreCase("Truck")) {
-            System.out.println("What is the max load of the truck's bed? ");
-            String maxLoad = valide.line();
-
-            System.out.println("How expensive is it to inspect the truck's  cargo? ");
-            String cargoInspectionCost = valide.line();
-            dbmanager.addTruck(vin, make, model, year, type, vehicle_type, costEstimate, maxLoad, cargoInspectionCost);
-        }
+    public void addCar(String vin, String make, String model, String year, String type, String vehicleType,
+                       String costEstimate, String numberOfDoors, String oilChangeCost) {
+        dbmanager.addCar(vin, make, model, year, type, vehicleType, costEstimate, numberOfDoors, oilChangeCost);
     }
 
+    public void addMotorcycle(String vin, String make, String model, String year, String type, String vehicleType,
+                       String costEstimate, String chainCondition, String chainReplacementCost) {
+        dbmanager.addMotorcycle(vin, make, model, year, type, vehicleType, costEstimate, chainCondition, chainReplacementCost);
+    }
+
+    public void addTruck(String vin, String make, String model, String year, String type, String vehicleType,
+                              String costEstimate, String maxLoad, String cargoInspectionCost) {
+        dbmanager.addTruck(vin, make, model, year, type, vehicleType, costEstimate, maxLoad, cargoInspectionCost);
+    }
 
     /**
      * Deletes a vehicle based off of its VIN
@@ -579,6 +490,33 @@ public class VehicleManager {
         for (Vehicle vehicle : vehicles) {
             if (vehicle.getVin().equals(vin)) {
                 return vehicle;
+            }
+        }
+        return null;
+    }
+
+    public Car findCar(String vin) {
+        for (Car car : cars) {
+            if (car.getVin().equals(vin)) {
+                return car;
+            }
+        }
+        return null;
+    }
+
+    public Motorcycle findMotorcycle(String vin) {
+        for (Motorcycle motorcycle : motorcycles) {
+            if (motorcycle.getVin().equals(vin)) {
+                return motorcycle;
+            }
+        }
+        return null;
+    }
+
+    public Truck findTruck(String vin) {
+        for (Truck truck : trucks) {
+            if (truck.getVin().equals(vin)) {
+                return truck;
             }
         }
         return null;

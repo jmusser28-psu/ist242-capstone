@@ -2,14 +2,12 @@ package vehicleInterface;
 
 import database.DatabaseConnector;
 import util.InputValidation;
-import vehicles.Vehicle;
-import vehicles.VehicleManager;
+import vehicles.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 
 public class SearchInterface extends JFrame {
     public SearchInterface(VehicleManager vm) {
@@ -19,7 +17,8 @@ public class SearchInterface extends JFrame {
 
         JPanel defaultView = new JPanel(new GridLayout(8, 1, 8, 8));
 
-        JLabel promptVinLabel = new JLabel("Enter a Vehicle ID to search: ");
+        JLabel promptVinLabel = new JLabel("Enter a Vehicle ID to search:");
+        JLabel confirmationLabel = new JLabel("Press enter once VIN is entered");
         JTextField promptVin = new JTextField(16);
 
         JLabel result = new JLabel("");
@@ -33,13 +32,25 @@ public class SearchInterface extends JFrame {
                     result.setText("Error: VIN " + vin + " not found.");
                 }
                 else {
-                    result.setText("Found: VIN " + vin + ".");
+                    if (vehicle.getType().equals("Car")) {
+                        Car car = vm.findCar(vin);
+                        result.setText(car.displayMaintenanceDetails());
+                    }
+                    if (vehicle.getType().equals("Motorcycle")) {
+                        Motorcycle motorcycle = vm.findMotorcycle(vin);
+                        result.setText(motorcycle.displayMaintenanceDetails());
+                    }
+                    if (vehicle.getType().equals("Truck")) {
+                        Truck truck = vm.findTruck(vin);
+                        result.setText(truck.displayMaintenanceDetails());
+                    }
                 }
 
             }
         });
 
         defaultView.add(promptVinLabel);
+        defaultView.add(confirmationLabel);
         defaultView.add(promptVin);
         defaultView.add(result);
 

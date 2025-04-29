@@ -86,7 +86,7 @@ public class PrintMenu {
             }
             else if (userChoice == 3) {
                 // Add new vehicle
-                vm.addVehicle();
+                // vm.addVehicle();
                 vm = new VehicleManager(connection);
             }
             else if (userChoice == 4) {

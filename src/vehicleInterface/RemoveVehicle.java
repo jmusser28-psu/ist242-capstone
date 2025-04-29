@@ -5,8 +5,8 @@ import vehicles.VehicleManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 public class RemoveVehicle extends JFrame {
@@ -16,62 +16,39 @@ public class RemoveVehicle extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout());
 
-        JPanel removeVehicleView = new JPanel(new GridLayout(32, 32, 4, 4));
-        JPanel listPanel = listVehicles(vm);
+        JPanel defaultView = new JPanel(new GridLayout(16, 16, 4, 4));
 
-        JLabel removeVehiclePrompt = new JLabel("Enter the vin of the vehicle you want removed");
-        JTextField removeVehicleText = new JTextField(16);
-        JButton removeConfirmation = new JButton("Remove Vehicle");
-        JLabel wasSuccess = new JLabel("");
+        JLabel selectionLabel = new JLabel();
+        JComboBox vehicleComboBox = new JComboBox(getVehicles(vm));
 
-
-        removeConfirmation.addActionListener(new ActionListener() {
+        vehicleComboBox.addItemListener(new ItemListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean valid = vm.deleteVehicle(removeVehicleText.getText());
-                if (valid) {
-                    wasSuccess.setText("Successfully deleted vehicle with VIN: " + removeVehicleText.getText());
-                    remove(listPanel);
-                }
-                if (!valid) {
-                    wasSuccess.setText("Unable to deleted vehicle with VIN: " + removeVehicleText.getText());
-                }
-
+            public void itemStateChanged(ItemEvent e) {
+                System.out.println(e.getItem());
             }
         });
 
-        removeVehicleView.add(removeVehiclePrompt);
-        removeVehicleView.add(removeVehicleText);
-        removeVehicleView.add(removeConfirmation);
-        removeVehicleView.add(wasSuccess);
-
-        add(removeVehicleView, BorderLayout.NORTH);
-        add(listPanel, BorderLayout.EAST);
+        defaultView.add(vehicleComboBox);
+        defaultView.add(selectionLabel);
+        add(defaultView);
 
         show();
     }
-    private JPanel listVehicles(VehicleManager vm) {
+
+    public String[] getVehicles(VehicleManager vm) {
         ArrayList<Vehicle> vehicles = vm.getVehicles();
+        ArrayList<String> vehicleInformationArrayList = new ArrayList<>();
 
-        JPanel listPanel = new JPanel(new GridLayout(32, 32, 4, 4));
-
-        JLabel vehicleLabel = new JLabel("Vehicles:");
-        listPanel.add(vehicleLabel, BorderLayout.NORTH);
-
-        for (int i = 0; i < vehicles.size(); i++) {
-            String vin = vehicles.get(i).getVin();
-            String make = vehicles.get(i).getMake();
-            String model = vehicles.get(i).getModel();
-            String year = vehicles.get(i).getYear();
-            String type = vehicles.get(i).getType();
-
-            listPanel.add(new JLabel("VIN: " + vin +
-                    ", Make: " + make +
-                    ", Model " + model +
-                    ", Year " + year +
-                    ", Type " + type), BorderLayout.AFTER_LAST_LINE);
+        for (Vehicle vehicle : vehicles) {
+            vehicleInformationArrayList.add("VIN " + vehicle.getVin());
         }
-        return listPanel;
-    }
 
+        String[] vehicleInformationArray = new String[vehicleInformationArrayList.size()];
+
+        for (int i = 0; i < vehicleInformationArray.length; i++) {
+            vehicleInformationArray[i] = vehicleInformationArrayList.get(i);
+        }
+
+        return vehicleInformationArray;
+    }
 }
