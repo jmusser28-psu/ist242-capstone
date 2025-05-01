@@ -5,8 +5,8 @@ import vehicles.VehicleManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class RemoveVehicle extends JFrame {
@@ -18,25 +18,36 @@ public class RemoveVehicle extends JFrame {
 
         JPanel defaultView = new JPanel(new GridLayout(16, 16, 4, 4));
 
-        JLabel selectionLabel = new JLabel();
-        JComboBox vehicleComboBox = new JComboBox(getVehicles(vm));
+        JComboBox vehicleComboBox = new JComboBox(getVehicles(vm.getVehicles()));
 
-        vehicleComboBox.addItemListener(new ItemListener() {
+        JButton deleteButton = new JButton("Delete Vehicle");
+        deleteButton.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                System.out.println(e.getItem());
+            public void actionPerformed(ActionEvent e) {
+                int index = vehicleComboBox.getSelectedIndex();
+                String vin = "";
+
+                ArrayList<Vehicle> vehicles = vm.getVehicles();
+                for (int i = 0; i < vehicles.size(); i++) {
+                    if (i == index) {
+                        vin = vehicles.get(i).getVin();
+                    }
+                }
+
+                vm.deleteVehicle(vin);
+                vehicleComboBox.removeItemAt(index);
+
             }
         });
 
         defaultView.add(vehicleComboBox);
-        defaultView.add(selectionLabel);
+        defaultView.add(deleteButton);
         add(defaultView);
 
         show();
     }
 
-    public String[] getVehicles(VehicleManager vm) {
-        ArrayList<Vehicle> vehicles = vm.getVehicles();
+    public String[] getVehicles(ArrayList<Vehicle> vehicles) {
         ArrayList<String> vehicleInformationArrayList = new ArrayList<>();
 
         for (Vehicle vehicle : vehicles) {
