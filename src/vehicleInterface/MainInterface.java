@@ -10,10 +10,11 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 
 public class MainInterface extends JFrame {
+    private VehicleManager vm;
+
     public MainInterface() {
         DatabaseConnector dbc = new DatabaseConnector();
         Connection connection = dbc.getConnection();
-        VehicleManager vm = new VehicleManager(connection);
 
         setTitle("IST Vehicle Care Solutions");
         setSize(640, 480);
@@ -27,6 +28,7 @@ public class MainInterface extends JFrame {
         listVehicle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                vm = new VehicleManager(connection);
                 new ListInterface(vm);
             }
         });
@@ -36,6 +38,7 @@ public class MainInterface extends JFrame {
         addVehicle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                vm = new VehicleManager(connection);
                 new AddInterface(vm);
             }
         });
@@ -45,6 +48,7 @@ public class MainInterface extends JFrame {
         removeVehicle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                vm = new VehicleManager(connection);
                 new RemoveVehicle(vm);
             }
         });
@@ -53,6 +57,7 @@ public class MainInterface extends JFrame {
         updateVehicle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                vm = new VehicleManager(connection);
                 new UpdateInterface(vm);
             }
         });
@@ -61,6 +66,7 @@ public class MainInterface extends JFrame {
         searchVehicle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                vm = new VehicleManager(connection);
                 new SearchInterface(vm);
             }
         });
