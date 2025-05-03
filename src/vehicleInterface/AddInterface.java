@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class AddInterface extends JFrame {
     public AddInterface(VehicleManager vm) {
-        setTitle("IST Vehicle Car Solutions");
+        setTitle("IST Vehicle Car Solutions: Vehicle Add");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout());
@@ -134,12 +134,12 @@ public class AddInterface extends JFrame {
                 String oilChangeCost = oilChangeCostText.getText();
 
                 if (!vin.isBlank() && !make.isBlank() && !model.isBlank() && !year.isBlank() && !vehicleType.isBlank() &&
-                !costEstimate.isBlank() && !numberOfDoors.isBlank() && !oilChangeCost.isBlank()) {
+                !costEstimate.isBlank() && !numberOfDoors.isBlank() && !oilChangeCost.isBlank() && !(vm.vehicleExists(vin))) {
                     vm.addCar(vin, make, model, year, type, vehicleType, costEstimate, numberOfDoors, oilChangeCost);
                     isSuccessCar.setText("Success");
                 }
                 else {
-                    isSuccessCar.setText("Error, ensure all fields are entered");
+                    isSuccessCar.setText("Error, ensure all fields are entered, and the VIN does not exist");
                 }
 
             }
@@ -160,12 +160,12 @@ public class AddInterface extends JFrame {
                 String chainReplacementCost = chainReplacementCostText.getText();
 
                 if (!vin.isBlank() && !make.isBlank() && !model.isBlank() && !year.isBlank() && !vehicleType.isBlank() &&
-                        !costEstimate.isBlank() && !chainCondition.isBlank() && !chainReplacementCost.isBlank()) {
+                        !costEstimate.isBlank() && !chainCondition.isBlank() && !chainReplacementCost.isBlank() && !(vm.vehicleExists(vin))) {
                     vm.addMotorcycle(vin, make, model, year, type, vehicleType, costEstimate, chainCondition, chainReplacementCost);
                     isSuccessMotorcycle.setText("Success");
                 }
                 else {
-                    isSuccessMotorcycle.setText("Error, ensure all fields are entered");
+                    isSuccessMotorcycle.setText("Error, ensure all fields are entered, and the VIN does not exist");
                 }
 
             }
@@ -186,12 +186,12 @@ public class AddInterface extends JFrame {
                 String cargoInspectionCost = cargoInspectionCostText.getText();
 
                 if (!vin.isBlank() && !make.isBlank() && !model.isBlank() && !year.isBlank() && !vehicleType.isBlank() &&
-                        !costEstimate.isBlank() && !maxLoad.isBlank() && !cargoInspectionCost.isBlank()) {
+                        !costEstimate.isBlank() && !maxLoad.isBlank() && !cargoInspectionCost.isBlank() && !(vm.vehicleExists(vin))) {
                     vm.addTruck(vin, make, model, year, type, vehicleType, costEstimate, maxLoad, cargoInspectionCost);
                     isSuccessTruck.setText("Success");
                 }
                 else {
-                    isSuccessTruck.setText("Error, ensure all fields are entered");
+                    isSuccessTruck.setText("Error, ensure all fields are entered, and the VIN does not exist");
                 }
 
             }

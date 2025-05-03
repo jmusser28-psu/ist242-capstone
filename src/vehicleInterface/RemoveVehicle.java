@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RemoveVehicle extends JFrame {
     public RemoveVehicle(VehicleManager vm) {
-        setTitle("IST Vehicle Care Solutions");
+        setTitle("IST Vehicle Care Solutions: Vehicle Remove");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout());
@@ -25,18 +25,13 @@ public class RemoveVehicle extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = vehicleComboBox.getSelectedIndex();
-                String vin = "";
 
-                ArrayList<Vehicle> vehicles = vm.getVehicles();
-                for (int i = 0; i < vehicles.size(); i++) {
-                    if (i == index) {
-                        vin = vehicles.get(i).getVin();
-                    }
-                }
+                String selection = vehicleComboBox.getSelectedItem().toString();
+                int stringIndex = selection.indexOf(" ");
+                String vin = selection.substring(stringIndex + 1);
 
                 vm.deleteVehicle(vin);
                 vehicleComboBox.removeItemAt(index);
-
             }
         });
 
@@ -51,7 +46,7 @@ public class RemoveVehicle extends JFrame {
         ArrayList<String> vehicleInformationArrayList = new ArrayList<>();
 
         for (Vehicle vehicle : vehicles) {
-            vehicleInformationArrayList.add("VIN " + vehicle.getVin());
+            vehicleInformationArrayList.add("VIN: " + vehicle.getVin());
         }
 
         String[] vehicleInformationArray = new String[vehicleInformationArrayList.size()];

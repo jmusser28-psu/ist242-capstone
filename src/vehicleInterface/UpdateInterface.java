@@ -12,13 +12,13 @@ public class UpdateInterface extends JFrame {
     String vin;
     String type;
     public UpdateInterface(VehicleManager vm) {
-        setTitle("IST Vehicle Care Solutions");
+        setTitle("IST Vehicle Care Solutions: Vehicle Update");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout());
 
-        JPanel defaultView = new JPanel(new GridLayout(16, 16, 4, 4));
-        JPanel updateView = new JPanel(new GridLayout(16, 16, 4, 4));
+        JPanel defaultView = new JPanel(new GridLayout(16, 1, 4, 4));
+        JPanel updateView = new JPanel(new GridLayout(24, 1, 4, 4));
 
         JComboBox vehicleComboBox = new JComboBox(getVehicles(vm.getVehicles()));
         JButton getInformation = new JButton("Retrieve Vehicle Info");
@@ -38,7 +38,6 @@ public class UpdateInterface extends JFrame {
         JTextField yearText = new JTextField();
 
         JLabel typeLabel = new JLabel();
-        JTextField typeText = new JTextField();
 
         JLabel brandLabel = new JLabel();
         JTextField brandText = new JTextField();
@@ -73,17 +72,19 @@ public class UpdateInterface extends JFrame {
                 remove(updateView);
                 updateView.removeAll();
 
-                int index = vehicleComboBox.getSelectedIndex();
                 Vehicle vehicle = null;
+
+                String selection = vehicleComboBox.getSelectedItem().toString();
+                int stringIndex = selection.indexOf(" ");
+                vin = selection.substring(stringIndex + 1);
 
                 ArrayList<Vehicle> vehicles = vm.getVehicles();
                 for (int i = 0; i < vehicles.size(); i++) {
-                    if (i == index) {
+                    if (vehicles.get(i).getVin().equals(vin)) {
                         vehicle = vehicles.get(i);
                     }
                 }
 
-                vin = vehicle.getVin();
                 String make = vehicle.getMake();
                 String model = vehicle.getModel();
                 String year = vehicle.getYear();
@@ -100,15 +101,16 @@ public class UpdateInterface extends JFrame {
                 String maxLoad = null;
                 String cargoInspectionCost = null;
 
-                vinLabel.setText(vin);
-                makeLabel.setText(make);
-                modelLabel.setText(model);
-                yearLabel.setText(year);
-                typeLabel.setText(type);
-                brandLabel.setText(brand);
-                costEstimateLabel.setText(costEstimate);
+                vinLabel.setText("VIN: " + vin);
+                makeLabel.setText("Make: " + make);
+                modelLabel.setText("Model: " + model);
+                yearLabel.setText("Year: " + year);
+                typeLabel.setText("Type: " + type);
+                brandLabel.setText("Brand: " + brand);
+                costEstimateLabel.setText("Cost Estimate: " + costEstimate);
 
                 updateView.add(vinLabel);
+                updateView.add(typeLabel);
 
                 updateView.add(makeLabel);
                 updateView.add(makeText);
@@ -120,7 +122,6 @@ public class UpdateInterface extends JFrame {
                 updateView.add(yearText);
 
                 updateView.add(typeLabel);
-                updateView.add(typeText);
 
                 updateView.add(brandLabel);
                 updateView.add(brandText);
@@ -136,8 +137,8 @@ public class UpdateInterface extends JFrame {
                             numberOfDoors = cars.get(i).getNumDoors();
                             oilChangeCost = cars.get(i).getOilChangeCost();
 
-                            numberOfDoorsLabel.setText(numberOfDoors);
-                            oilChangeCostLabel.setText(oilChangeCost);
+                            numberOfDoorsLabel.setText("Number of Doors: " + numberOfDoors);
+                            oilChangeCostLabel.setText("Oil Change Cost: " + oilChangeCost);
 
                             updateView.add(numberOfDoorsLabel);
                             updateView.add(numberOfDoorsText);
@@ -174,8 +175,8 @@ public class UpdateInterface extends JFrame {
                             maxLoad = trucks.get(i).getMaxLoad();
                             cargoInspectionCost = trucks.get(i).getCargoInspectionCost();
 
-                            maxLoadLabel.setText(maxLoad);
-                            cargoInspectionCostLabel.setText(cargoInspectionCost);
+                            maxLoadLabel.setText("Max Load: " + maxLoad);
+                            cargoInspectionCostLabel.setText("Cargo Inspection Cost: " + cargoInspectionCost);
 
                             updateView.add(maxLoadLabel);
                             updateView.add(maxLoadText);
@@ -187,7 +188,7 @@ public class UpdateInterface extends JFrame {
                 }
 
                 updateView.add(updateVehicle);
-                updateVehicle.add(isSuccess);
+                updateView.add(isSuccess);
 
                 add(updateView);
                 revalidate();
@@ -238,7 +239,7 @@ public class UpdateInterface extends JFrame {
         ArrayList<String> vehicleInformationArrayList = new ArrayList<>();
 
         for (Vehicle vehicle : vehicles) {
-            vehicleInformationArrayList.add("VIN " + vehicle.getVin());
+            vehicleInformationArrayList.add("VIN: " + vehicle.getVin());
         }
 
         String[] vehicleInformationArray = new String[vehicleInformationArrayList.size()];

@@ -1,9 +1,6 @@
 package vehicleInterface;
 
-import database.DatabaseConnector;
-import util.InputValidation;
 import vehicles.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +12,7 @@ public class SearchInterface extends JFrame {
         setSize(640, 480);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel defaultView = new JPanel(new GridLayout(8, 1, 8, 8));
+        JPanel defaultView = new JPanel(new GridLayout(16, 16, 8, 8));
 
         JLabel promptVinLabel = new JLabel("Enter a Vehicle ID to search:");
         JLabel confirmationLabel = new JLabel("Press enter once VIN is entered");
