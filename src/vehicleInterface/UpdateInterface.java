@@ -20,9 +20,12 @@ public class UpdateInterface extends JFrame {
         JPanel defaultView = new JPanel(new GridLayout(16, 1, 4, 4));
         JPanel updateView = new JPanel(new GridLayout(24, 1, 4, 4));
 
+        JLabel selectVehicle = new JLabel("Select the VIN for the Vehicle to Update:");
+
         JComboBox vehicleComboBox = new JComboBox(getVehicles(vm.getVehicles()));
         JButton getInformation = new JButton("Retrieve Vehicle Info");
 
+        defaultView.add(selectVehicle);
         defaultView.add(vehicleComboBox);
         defaultView.add(getInformation);
 
@@ -102,12 +105,12 @@ public class UpdateInterface extends JFrame {
                 String cargoInspectionCost = null;
 
                 vinLabel.setText("VIN: " + vin);
-                makeLabel.setText("Make: " + make);
-                modelLabel.setText("Model: " + model);
-                yearLabel.setText("Year: " + year);
+                makeLabel.setText("Current Make: " + make + ", enter a new Make:");
+                modelLabel.setText("Current Model: " + model + ", enter a new Model:");
+                yearLabel.setText("Current Year: " + year + ", enter a new Year:");
                 typeLabel.setText("Type: " + type);
-                brandLabel.setText("Brand: " + brand);
-                costEstimateLabel.setText("Cost Estimate: " + costEstimate);
+                brandLabel.setText("Current Brand: " + brand + ", enter a new Brand:");
+                costEstimateLabel.setText("Current Cost Estimate: $" + costEstimate + ", enter a new Cost Estimate:");
 
                 updateView.add(vinLabel);
                 updateView.add(typeLabel);
@@ -137,8 +140,8 @@ public class UpdateInterface extends JFrame {
                             numberOfDoors = cars.get(i).getNumDoors();
                             oilChangeCost = cars.get(i).getOilChangeCost();
 
-                            numberOfDoorsLabel.setText("Number of Doors: " + numberOfDoors);
-                            oilChangeCostLabel.setText("Oil Change Cost: " + oilChangeCost);
+                            numberOfDoorsLabel.setText("Current Number of Doors: " + numberOfDoors + ", enter a new Number of Doors:");
+                            oilChangeCostLabel.setText("Current Oil Change Cost: $" + oilChangeCost + ", enter a new Oil Change Cost:");
 
                             updateView.add(numberOfDoorsLabel);
                             updateView.add(numberOfDoorsText);
@@ -156,8 +159,8 @@ public class UpdateInterface extends JFrame {
                             chainCondition = motorcycles.get(i).getChainCondition();
                             chainReplacementCost = motorcycles.get(i).getChainReplacementCost();
 
-                            chainConditionLabel.setText(chainCondition);
-                            chainReplacementCostLabel.setText(chainReplacementCost);
+                            chainConditionLabel.setText("Current Chain Condition: " + chainCondition + ", enter a new Chain Condition:");
+                            chainReplacementCostLabel.setText("Current Chain Replacement Cost $" + chainReplacementCost + ", enter a new Chain Replacement Cost:");
 
                             updateView.add(chainConditionLabel);
                             updateView.add(chainConditionText);
@@ -175,8 +178,8 @@ public class UpdateInterface extends JFrame {
                             maxLoad = trucks.get(i).getMaxLoad();
                             cargoInspectionCost = trucks.get(i).getCargoInspectionCost();
 
-                            maxLoadLabel.setText("Max Load: " + maxLoad);
-                            cargoInspectionCostLabel.setText("Cargo Inspection Cost: " + cargoInspectionCost);
+                            maxLoadLabel.setText("Current Max Load: " + maxLoad + ", enter a new Max Load:");
+                            cargoInspectionCostLabel.setText("Current Cargo Inspection Cost: $" + cargoInspectionCost + ", enter a new Cargo Inspection Cost:");
 
                             updateView.add(maxLoadLabel);
                             updateView.add(maxLoadText);

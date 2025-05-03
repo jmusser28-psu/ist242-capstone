@@ -15,9 +15,9 @@ public class AddInterface extends JFrame {
         setLayout(new GridLayout());
 
         JPanel carPanel = new JPanel(new GridLayout(16, 16, 4, 4));
-        JLabel numberOfDoorsLabel = new JLabel("Number of Doors");
+        JLabel numberOfDoorsLabel = new JLabel("Enter a Number of Doors:");
         JTextField numberOfDoorsText = new JTextField();
-        JLabel oilChangeCostLabel = new JLabel("Oil Change Cost");
+        JLabel oilChangeCostLabel = new JLabel("Enter an Oil Change Cost:");
         JTextField oilChangeCostText = new JTextField();
         JButton addCarButton = new JButton("Add Car");
         JLabel isSuccessCar = new JLabel("");
@@ -30,9 +30,9 @@ public class AddInterface extends JFrame {
         carPanel.add(isSuccessCar);
 
         JPanel motorcyclePanel = new JPanel(new GridLayout(16, 16, 4, 4));
-        JLabel chainConditionLabel = new JLabel("Chain Condition");
+        JLabel chainConditionLabel = new JLabel("Enter a Chain Condition:");
         JTextField chainConditionText = new JTextField();
-        JLabel chainReplacementCostLabel = new JLabel("Chain Replacement Cost");
+        JLabel chainReplacementCostLabel = new JLabel("Enter a Chain Replacement Cost:");
         JTextField chainReplacementCostText = new JTextField();
         JButton addMotorcycleButton = new JButton("Add Motorcycle");
         JLabel isSuccessMotorcycle = new JLabel("");
@@ -45,9 +45,9 @@ public class AddInterface extends JFrame {
         motorcyclePanel.add(isSuccessMotorcycle);
 
         JPanel truckPanel = new JPanel(new GridLayout(16, 16, 4, 4));
-        JLabel maxLoadLabel = new JLabel("Max Cargo Load");
+        JLabel maxLoadLabel = new JLabel("Enter a Max Cargo Load:");
         JTextField maxLoadText = new JTextField();
-        JLabel cargoInspectionCostLabel = new JLabel("Cargo Inspection Cost");
+        JLabel cargoInspectionCostLabel = new JLabel("Enter a Cargo Inspection Cost:");
         JTextField cargoInspectionCostText = new JTextField();
         JButton addTruckButton = new JButton("Add Truck");
         JLabel isSuccessTruck = new JLabel("");
@@ -59,27 +59,29 @@ public class AddInterface extends JFrame {
         truckPanel.add(addTruckButton);
         truckPanel.add(isSuccessTruck);
 
-        JLabel vinLabel = new JLabel("VIN");
+        JLabel vinLabel = new JLabel("Enter a VIN:");
         JTextField vinText = new JTextField();
+        vinText.setEditable(false);
 
-        JLabel makeLabel = new JLabel("Make");
+        JLabel makeLabel = new JLabel("Enter a Make:");
         JTextField makeText = new JTextField();
 
-        JLabel modelLabel = new JLabel("Model");
+        JLabel modelLabel = new JLabel("Enter a Model:");
         JTextField modelText = new JTextField();
 
-        JLabel yearLabel = new JLabel("Year");
+        JLabel yearLabel = new JLabel("Enter a Year:");
         JTextField yearText = new JTextField();
 
         // Different name for Vehicle_Type, we think it makes more sense when prompting the user
-        JLabel brandLabel = new JLabel("Vehicle Brand");
+        JLabel brandLabel = new JLabel("Enter a Vehicle Brand:");
         JTextField brandText = new JTextField();
 
-        JLabel costEstimateLabel = new JLabel("Cost Estimate");
+        JLabel costEstimateLabel = new JLabel("Enter a Cost Estimate:");
         JTextField costEstimateText = new JTextField();
 
         JPanel defaultView = new JPanel(new GridLayout(16, 16, 4, 4));
 
+        JLabel selectType = new JLabel("Select a Vehicle Type:");
         JButton carButton = new JButton("Car");
         carButton.addActionListener(new ActionListener() {
             @Override
@@ -216,6 +218,7 @@ public class AddInterface extends JFrame {
         defaultView.add(costEstimateText);
 
 
+        defaultView.add(selectType);
         defaultView.add(carButton);
         defaultView.add(motorcycleButton);
         defaultView.add(truckButton);

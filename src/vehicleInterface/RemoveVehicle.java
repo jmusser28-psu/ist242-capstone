@@ -18,6 +18,8 @@ public class RemoveVehicle extends JFrame {
 
         JPanel defaultView = new JPanel(new GridLayout(16, 16, 4, 4));
 
+        JLabel selectVehicle = new JLabel("Select the VIN for the Vehicle to Remove:");
+
         JComboBox vehicleComboBox = new JComboBox(getVehicles(vm.getVehicles()));
 
         JButton deleteButton = new JButton("Delete Vehicle");
@@ -35,6 +37,7 @@ public class RemoveVehicle extends JFrame {
             }
         });
 
+        defaultView.add(selectVehicle);
         defaultView.add(vehicleComboBox);
         defaultView.add(deleteButton);
         add(defaultView);

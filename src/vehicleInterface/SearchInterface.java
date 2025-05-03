@@ -12,15 +12,15 @@ public class SearchInterface extends JFrame {
         setSize(640, 480);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel defaultView = new JPanel(new GridLayout(16, 16, 8, 8));
+        JPanel defaultView = new JPanel(new GridLayout(8, 1, 8, 8));
 
         JLabel promptVinLabel = new JLabel("Enter a Vehicle ID to search:");
-        JLabel confirmationLabel = new JLabel("Press enter once VIN is entered");
         JTextField promptVin = new JTextField(16);
+        JButton findVehicleButton = new JButton("Find Vehicle");
 
         JLabel result = new JLabel("");
 
-        promptVin.addActionListener(new ActionListener() {
+        findVehicleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String vin = promptVin.getText();
@@ -47,8 +47,8 @@ public class SearchInterface extends JFrame {
         });
 
         defaultView.add(promptVinLabel);
-        defaultView.add(confirmationLabel);
         defaultView.add(promptVin);
+        defaultView.add(findVehicleButton);
         defaultView.add(result);
 
         add(defaultView);

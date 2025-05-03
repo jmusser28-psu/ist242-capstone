@@ -18,7 +18,7 @@ public class ListInterface extends JFrame {
         JPanel defaultView = new JPanel(new GridLayout(32, 1, 4, 4));
 
         JLabel listOfVehiclesLabel = new JLabel("Vehicles:");
-        defaultView.add(listOfVehiclesLabel, BorderLayout.NORTH);
+        defaultView.add(listOfVehiclesLabel);
 
         ArrayList<Car> cars = vm.getCars();
         ArrayList<Motorcycle> motorcycles = vm.getMotorcycles();

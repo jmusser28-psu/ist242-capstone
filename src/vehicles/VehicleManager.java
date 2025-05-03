@@ -37,16 +37,19 @@ public class VehicleManager {
     public void addCar(String vin, String make, String model, String year, String type, String vehicleType,
                        String costEstimate, String numberOfDoors, String oilChangeCost) {
         dbmanager.addCar(vin, make, model, year, type, vehicleType, costEstimate, numberOfDoors, oilChangeCost);
+        updateManager();
     }
 
     public void addMotorcycle(String vin, String make, String model, String year, String type, String vehicleType,
                        String costEstimate, String chainCondition, String chainReplacementCost) {
         dbmanager.addMotorcycle(vin, make, model, year, type, vehicleType, costEstimate, chainCondition, chainReplacementCost);
+        updateManager();
     }
 
     public void addTruck(String vin, String make, String model, String year, String type, String vehicleType,
                               String costEstimate, String maxLoad, String cargoInspectionCost) {
         dbmanager.addTruck(vin, make, model, year, type, vehicleType, costEstimate, maxLoad, cargoInspectionCost);
+        updateManager();
     }
 
     /**
@@ -96,11 +99,11 @@ public class VehicleManager {
             }
 
             dbmanager.deleteVehicle(vin, type);
+            updateManager();
         }
     }
 
     public Vehicle findVehicle(String vin) {
-        updateManager();
         for (Vehicle vehicle : vehicles) {
             if (vehicle.getVin().equals(vin)) {
                 return vehicle;
@@ -110,7 +113,6 @@ public class VehicleManager {
     }
 
     public Car findCar(String vin) {
-        updateManager();
         for (Car car : cars) {
             if (car.getVin().equals(vin)) {
                 return car;
@@ -120,7 +122,6 @@ public class VehicleManager {
     }
 
     public Motorcycle findMotorcycle(String vin) {
-        updateManager();
         for (Motorcycle motorcycle : motorcycles) {
             if (motorcycle.getVin().equals(vin)) {
                 return motorcycle;
@@ -130,7 +131,6 @@ public class VehicleManager {
     }
 
     public Truck findTruck(String vin) {
-        updateManager();
         for (Truck truck : trucks) {
             if (truck.getVin().equals(vin)) {
                 return truck;
@@ -140,27 +140,22 @@ public class VehicleManager {
     }
 
     public ArrayList<Vehicle> getVehicles() {
-        updateManager();
         return vehicles;
     }
 
     public ArrayList<Car> getCars() {
-        updateManager();
         return cars;
     }
 
     public ArrayList<Motorcycle> getMotorcycles() {
-        updateManager();
         return motorcycles;
     }
 
     public ArrayList<Truck> getTrucks() {
-        updateManager();
         return trucks;
     }
 
     public boolean vehicleExists(String vin) {
-        updateManager();
         boolean doesExist = false;
 
         for (Vehicle vehicle : vehicles) {

@@ -31,7 +31,7 @@ public class Truck extends Vehicle {
     public String displayMaintenanceDetails() {
         String maintenace = ("Truck: " + super.getMake() + " " + super.getModel() +
                 " | VIN: " + super.getVin() +
-                " | Maintenance: $" + super.getCostEstimate() +
+                " | Maintenance Cost: $" + super.getCostEstimate() +
                 " | Cargo Inspection Cost: $" + (cargoInspectionCost));
 
         return maintenace;

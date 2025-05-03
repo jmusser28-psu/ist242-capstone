@@ -92,7 +92,7 @@ public class Vehicle {
     public String displayMaintenanceDetails() {
         String maintenance = ("Vehicle: " + vehicle_type + " " + model +
                 " | VIN: " + vin +
-                " | Maintenance: $" + costEstimate);
+                " | Maintenance Cost: $" + costEstimate);
 
         return maintenance;
     }

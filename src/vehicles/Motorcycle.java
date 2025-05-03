@@ -30,7 +30,7 @@ public class Motorcycle extends Vehicle {
     public String displayMaintenanceDetails() {
         String maintenance = ("Motorcycle: " + super.getMake() + " " + super.getModel() +
                 " | VIN: " + super.getVin() +
-                " | Maintenance: $" + super.getCostEstimate() +
+                " | Maintenance Cost: $" + super.getCostEstimate() +
                 " | Chain Condition: " + chainCondition +
                 " | Chain Replacement Cost: $" + chainReplacementCost);
 

@@ -284,16 +284,4 @@ public class DatabaseManager {
             System.err.println("Error occurred: " + e.getMessage());
         }
     }
-
-    /**
-     * Closes the database connection when done.
-     * Helps prevent resource leaks.
-     */
-    public void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            System.err.println("Error occurred: " + e.getMessage());
-        }
-    }
 }

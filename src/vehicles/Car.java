@@ -30,7 +30,7 @@ public class Car extends Vehicle {
     public String displayMaintenanceDetails() {
         String maintenance = ("Car: " + super.getMake() + " " + super.getModel() +
                 " | VIN: " + super.getVin() +
-                " | Maintenance: $" + super.getCostEstimate() +
+                " | Maintenance Cost: $" + super.getCostEstimate() +
                 " | Oil Change Cost: $" + (oilChangeCost));
 
         return maintenance;
