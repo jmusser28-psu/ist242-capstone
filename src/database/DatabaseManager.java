@@ -63,6 +63,7 @@ public class DatabaseManager {
 
         try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
+                // Extracting vehicle data from each row in the result set.
                 String vin = rs.getString("vin");
                 String make = rs.getString("make");
                 String model = rs.getString("model");
@@ -105,6 +106,7 @@ public class DatabaseManager {
 
         try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
+                // Extracting vehicle data from each row in the result set.
                 String vin = rs.getString("vin");
                 String make = rs.getString("make");
                 String model = rs.getString("model");
@@ -113,13 +115,14 @@ public class DatabaseManager {
                 String vehicle_type = rs.getString("vehicle_type");
                 String costEstimate = rs.getString("costEstimate");
 
-                // Matching motorcycles with their specific details.
+                // Inner query to find matching motorcycle details using VIN.
                 try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(motorcycleQuery)) {
                     while (resultSet.next()) {
                         String vehicleID = resultSet.getString("vin");
                         String chainCondition = resultSet.getString("chainCondition");
                         String chainReplacementCost = resultSet.getString("chainReplacementCost");
 
+                        // Check if vehicle is of type 'Motorcycle' and VIN matches.
                         if (type.equalsIgnoreCase("Motorcycle") && vin.equals(vehicleID)) {
                             motorcycles.add(new Motorcycle(vin, make, model, year, type, vehicle_type, costEstimate, chainCondition, chainReplacementCost));
                         }
@@ -146,6 +149,7 @@ public class DatabaseManager {
 
         try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
+                // Extracting vehicle data from each row in the result set.
                 String vin = rs.getString("vin");
                 String make = rs.getString("make");
                 String model = rs.getString("model");
@@ -154,12 +158,14 @@ public class DatabaseManager {
                 String vehicle_type = rs.getString("vehicle_type");
                 String costEstimate = rs.getString("costEstimate");
 
+                // Inner query to find matching truck details using VIN.
                 try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(truckQuery)) {
                     while (resultSet.next()) {
                         String vehicleID = resultSet.getString("vin");
                         String maxLoad = resultSet.getString("maxLoad");
                         String cargoInspectionCost = resultSet.getString("cargoInspectionCost");
 
+                        // Check if vehicle is of type 'Truck' and VIN matches.
                         if (type.equalsIgnoreCase("Truck") && vin.equals(vehicleID)) {
                             trucks.add(new Truck(vin, make, model, year, type, vehicle_type, costEstimate, maxLoad, cargoInspectionCost));
                         }
@@ -268,12 +274,14 @@ public class DatabaseManager {
                     pstat.execute();
                 }
             }
+            // If the vehicle is a motorcycle, delete from the motorcycle_details table as well.
             if (type.equalsIgnoreCase("Motorcycle")) {
                 try (PreparedStatement pstat = connection.prepareStatement("DELETE FROM motorcycle_details WHERE vin = ?")) {
                     pstat.setString(1, vin);
                     pstat.execute();
                 }
             }
+            // If the vehicle is a truck, delete from the truck_details table as well.
             if (type.equalsIgnoreCase("Truck")) {
                 try (PreparedStatement pstat = connection.prepareStatement("DELETE FROM truck_details WHERE vin = ?")) {
                     pstat.setString(1, vin);

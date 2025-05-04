@@ -6,6 +6,7 @@ package vehicles;
  */
 public class Vehicle {
 
+    // Fields for general vehicle information contained in the database
     private String vin;
     private String make;
     private String model;

@@ -1,6 +1,7 @@
 package vehicles;
 
 public class Motorcycle extends Vehicle {
+    // Fields for motorcycle information contained in the database
     private String chainCondition;
     private String chainReplacementCost;
 

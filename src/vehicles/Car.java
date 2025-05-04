@@ -1,6 +1,7 @@
 package vehicles;
 
 public class Car extends Vehicle {
+    // Fields for car information contained in the database
     private String numDoors;
     private String oilChangeCost;
 

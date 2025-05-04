@@ -7,13 +7,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//GUI Class for adding the different vehicle types
 public class AddInterface extends JFrame {
     public AddInterface(VehicleManager vm) {
+        //Sets the window title, size, and close operation
         setTitle("IST Vehicle Car Solutions: Vehicle Add");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout());
 
+        //Sets up labels, buttons and a panel for car information
         JPanel carPanel = new JPanel(new GridLayout(16, 16, 4, 4));
         JLabel numberOfDoorsLabel = new JLabel("Enter a Number of Doors:");
         JTextField numberOfDoorsText = new JTextField();
@@ -29,6 +32,7 @@ public class AddInterface extends JFrame {
         carPanel.add(addCarButton);
         carPanel.add(isSuccessCar);
 
+        //Sets up labels, buttons and a panel for motorcycle information
         JPanel motorcyclePanel = new JPanel(new GridLayout(16, 16, 4, 4));
         JLabel chainConditionLabel = new JLabel("Enter a Chain Condition:");
         JTextField chainConditionText = new JTextField();
@@ -44,6 +48,7 @@ public class AddInterface extends JFrame {
         motorcyclePanel.add(addMotorcycleButton);
         motorcyclePanel.add(isSuccessMotorcycle);
 
+        //Sets up labels, buttons and a panel for truck information
         JPanel truckPanel = new JPanel(new GridLayout(16, 16, 4, 4));
         JLabel maxLoadLabel = new JLabel("Enter a Max Cargo Load:");
         JTextField maxLoadText = new JTextField();
@@ -59,6 +64,7 @@ public class AddInterface extends JFrame {
         truckPanel.add(addTruckButton);
         truckPanel.add(isSuccessTruck);
 
+        //This section is for the Vehicles basic information(vin, make, model etc.)
         JLabel vinLabel = new JLabel("Enter a VIN:");
         JTextField vinText = new JTextField();
         vinText.setEditable(false);
@@ -81,7 +87,10 @@ public class AddInterface extends JFrame {
 
         JPanel defaultView = new JPanel(new GridLayout(16, 16, 4, 4));
 
+        //Vehicle type buttons
         JLabel selectType = new JLabel("Select a Vehicle Type:");
+
+        //Car button event handler
         JButton carButton = new JButton("Car");
         carButton.addActionListener(new ActionListener() {
             @Override
@@ -94,7 +103,7 @@ public class AddInterface extends JFrame {
                 repaint();
             }
         });
-
+        //Motorcycle button event handler
         JButton motorcycleButton = new JButton("Motorcycle");
         motorcycleButton.addActionListener(new ActionListener() {
             @Override
@@ -107,7 +116,7 @@ public class AddInterface extends JFrame {
                 repaint();
             }
         });
-
+        //Truck button event handler
         JButton truckButton = new JButton("Truck");
         truckButton.addActionListener(new ActionListener() {
             @Override
@@ -120,7 +129,7 @@ public class AddInterface extends JFrame {
                 repaint();
             }
         });
-
+        //This is the addCar buttons logic
         addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,7 +143,7 @@ public class AddInterface extends JFrame {
 
                 String numberOfDoors = numberOfDoorsText.getText();
                 String oilChangeCost = oilChangeCostText.getText();
-
+                //Checks the different fields and the VINs uniqueness
                 if (!vin.isBlank() && !make.isBlank() && !model.isBlank() && !year.isBlank() && !vehicleType.isBlank() &&
                 !costEstimate.isBlank() && !numberOfDoors.isBlank() && !oilChangeCost.isBlank() && !(vm.vehicleExists(vin))) {
                     vm.addCar(vin, make, model, year, type, vehicleType, costEstimate, numberOfDoors, oilChangeCost);
@@ -146,7 +155,7 @@ public class AddInterface extends JFrame {
 
             }
         });
-
+        //This is the addMotorCycle Button Logic
         addMotorcycleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -172,7 +181,7 @@ public class AddInterface extends JFrame {
 
             }
         });
-
+        //This is the addTruck Button Logic
         addTruckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -199,6 +208,7 @@ public class AddInterface extends JFrame {
             }
         });
 
+        //Adding all the components to defaultView
         defaultView.add(vinLabel);
         defaultView.add(vinText);
 
@@ -223,8 +233,8 @@ public class AddInterface extends JFrame {
         defaultView.add(motorcycleButton);
         defaultView.add(truckButton);
 
-        add(defaultView);
+        add(defaultView); //Adding the defaultView to the frame
 
-        show();
+        show(); //Displays the window
     }
 }

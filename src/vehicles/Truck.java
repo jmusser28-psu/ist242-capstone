@@ -2,6 +2,7 @@ package vehicles;
 
 public class Truck extends Vehicle {
 
+    // Fields for truck information contained in the database
     private String maxLoad;
     private String cargoInspectionCost;
 
