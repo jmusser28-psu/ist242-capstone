@@ -67,7 +67,6 @@ public class AddInterface extends JFrame {
         //This section is for the Vehicles basic information(vin, make, model etc.)
         JLabel vinLabel = new JLabel("Enter a VIN:");
         JTextField vinText = new JTextField();
-        vinText.setEditable(false);
 
         JLabel makeLabel = new JLabel("Enter a Make:");
         JTextField makeText = new JTextField();

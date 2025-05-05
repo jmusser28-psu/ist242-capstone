@@ -243,22 +243,44 @@ public class UpdateInterface extends JFrame {
                 String maxLoad = maxLoadText.getText();
                 String cargoInspectionCost = cargoInspectionCostText.getText();
 
-                // Remove old vehicle entry
-                vm.deleteVehicle(vin);
-
                 // Re-add updated vehicle based on type
-                // Indicates to the user if the vehicle was successfully added
+                // Indicates to the user if the vehicle was successfully added or not
                 if (type.equals("Car")) {
-                    vm.addCar(vin, make, model, year, type, brand, costEstimate, numberOfDoors, oilChangeCost);
-                    isSuccess.setText("Success");
+                    if (!make.isBlank() && !model.isBlank() && !year.isBlank() && !brand.isBlank() && !costEstimate.isBlank()
+                    && !numberOfDoors.isBlank() && !oilChangeCost.isBlank()) {
+                        // Remove old vehicle entry first before re-adding the vehicle
+                        vm.deleteVehicle(vin);
+                        vm.addCar(vin, make, model, year, type, brand, costEstimate, numberOfDoors, oilChangeCost);
+                        isSuccess.setText("Success");
+                    }
+                    else {
+                        isSuccess.setText("Error, ensure all fields are entered");
+                    }
+
                 }
                 if (type.equals("Motorcycle")) {
-                    vm.addMotorcycle(vin, make, model, year, type, brand, costEstimate, chainCondition, chainReplacementCost);
-                    isSuccess.setText("Success");
+                    if (!make.isBlank() && !model.isBlank() && !year.isBlank() && !brand.isBlank() && !costEstimate.isBlank()
+                            && !chainCondition.isBlank() && !chainReplacementCost.isBlank()) {
+                        // Remove old vehicle entry first before re-adding the vehicle
+                        vm.deleteVehicle(vin);
+                        vm.addMotorcycle(vin, make, model, year, type, brand, costEstimate, chainCondition, chainReplacementCost);
+                        isSuccess.setText("Success");
+                    }
+                    else {
+                        isSuccess.setText("Error, ensure all fields are entered");
+                    }
                 }
                 if (type.equals("Truck")) {
-                    vm.addTruck(vin, make, model, year, type, brand, costEstimate, maxLoad, cargoInspectionCost);
-                    isSuccess.setText("Success");
+                    if (!make.isBlank() && !model.isBlank() && !year.isBlank() && !brand.isBlank() && !costEstimate.isBlank()
+                            && !maxLoad.isBlank() && !cargoInspectionCost.isBlank()) {
+                        // Remove old vehicle entry first before re-adding the vehicle
+                        vm.deleteVehicle(vin);
+                        vm.addTruck(vin, make, model, year, type, brand, costEstimate, maxLoad, cargoInspectionCost);
+                        isSuccess.setText("Success");
+                    }
+                    else {
+                        isSuccess.setText("Error, ensure all fields are entered");
+                    }
                 }
 
             }

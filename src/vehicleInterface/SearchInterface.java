@@ -11,7 +11,7 @@ public class SearchInterface extends JFrame {
     public SearchInterface(VehicleManager vm) {
         //Sets up the window
         setTitle("IST Vehicle Care Solutions: Vehicle Search");
-        setSize(640, 480);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //Creates the main panel with a vertical layout
