@@ -47,6 +47,24 @@ public class ListInterface extends JFrame {
             defaultView.add(new JLabel("Vehicle " + index + ": " + truck.displayMaintenanceDetails()));
             index++;
         }
+
+        // Creates JLabels for the average maintenance cost of the specific vehicle types.
+        JLabel averageCarMaintenanceCost = new JLabel();
+        JLabel averageMotorcycleMaintenanceCost = new JLabel();
+        JLabel averageTruckMaintenanceCost = new JLabel();
+
+        // Sets the JLabels for the average maintenance costs per vehicle type.
+        // Also formats the cost to two decimal points of precision
+        averageCarMaintenanceCost.setText("Average Car Maintenance Cost: " + String.format("$%.2f", vm.getCarAverageMaintenanceCost()));
+        averageMotorcycleMaintenanceCost.setText("Average Motorcycle Maintenance Cost: " + String.format("$%.2f", vm.getMotorcycleAverageMaintenanceCost()));
+        averageTruckMaintenanceCost.setText("Average Truck Maintenance Cost: " + String.format("$%.2f", vm.getTruckAverageMaintenanceCost()));
+
+        // Adds the JLabels that contain the average maintenance costs per vehicle type to the defaultView panel.
+        defaultView.add(averageCarMaintenanceCost);
+        defaultView.add(averageMotorcycleMaintenanceCost);
+        defaultView.add(averageTruckMaintenanceCost);
+
+
         //Adds the defaultView panel to the window
         add(defaultView);
 

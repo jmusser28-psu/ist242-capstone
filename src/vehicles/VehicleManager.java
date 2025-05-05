@@ -144,6 +144,42 @@ public class VehicleManager {
         return trucks;
     }
 
+    // Gets the average maintenance cost of cars.
+    public double getCarAverageMaintenanceCost() {
+        double average = 0.0;
+        for (Car car : cars) {
+            average += Double.parseDouble(car.getCostEstimate());
+        }
+
+        average /= cars.size();
+
+        return average;
+    }
+
+    // Gets the average maintenance cost of motorcycles.
+    public double getMotorcycleAverageMaintenanceCost() {
+        double average = 0.0;
+        for (Motorcycle motorcycle : motorcycles) {
+            average += Double.parseDouble(motorcycle.getCostEstimate());
+        }
+
+        average /= motorcycles.size();
+
+        return average;
+    }
+
+    // Gets the average maintenance cost of trucks.
+    public double getTruckAverageMaintenanceCost() {
+        double average = 0.0;
+        for (Truck truck : trucks) {
+            average += Double.parseDouble(truck.getCostEstimate());
+        }
+
+        average /= trucks.size();
+
+        return average;
+    }
+
     // Determines if the vehicle exists so that we do not mistakenly add a new vehicle with an existing VIN
     // This would cause an SQL if we did not check
     public boolean vehicleExists(String vin) {

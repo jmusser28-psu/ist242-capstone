@@ -57,35 +57,6 @@ public class Vehicle {
         return costEstimate;
     }
 
-    // Setters for vehicle attributes
-    public void setVin(String vin) {
-        this.vin = vin;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setVehicle_type(String vehicle_type) {
-        this.vehicle_type = vehicle_type;
-    }
-
-    public void setCostEstimate(String costEstimate) {
-        this.costEstimate = costEstimate;
-    }
-
     /**
      * Displays general maintenance details for the vehicle.
      * This method is designed to be overridden by subclasses.
